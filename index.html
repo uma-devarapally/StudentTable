@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Student table</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div class="info_form">
+            <form onsubmit="event.preventDefault();fsubmit();" autocomplete="off" align="center">
+                <H2>Start adding data to the table....</H2>
+                            <input type="text" id="sname" placeholder="Enter student name" required><br>
+                            <input type="text" id="sid" placeholder="Enter student ID" required><br>
+                            <input type="text" id="smarks" placeholder="Enter marks " required><br>
+                            <input type="submit" value="SAVE" class="btn">
+                            <input type="reset" value="CLEAR" class="btn" >
+            </form>
+        </div>
+        <div id="info" class="info_table">
+            <h2>Here is your student data...</h2>
+            <table class="list" id="std_list" align="center">
+                <thead>
+                    <tr>
+                        <td>Student Name</td>
+                        <td>Student ID</td>
+                        <td>Marks</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script>
+                        if(localStorage.getItem("SNames")==null)
+                        {
+                            localStorage.setItem("SNames",'[]');
+                            localStorage.setItem("SIDs",'[]');
+                            localStorage.setItem("SMarks",'[]');   
+                        }
+                        else{
+                            LS_names=JSON.parse(localStorage.getItem("SNames"));
+                            LS_ids=JSON.parse(localStorage.getItem("SIDs"));
+                            LS_marks=JSON.parse(localStorage.getItem("SMarks"));
+                            for(i=0;i<LS_names.length;i++){
+                                data={sname:LS_names[i],sid:LS_ids[i],smarks:LS_marks[i]};
+                                insert_row(data);
+                            }
+                        }
+
+                    </script>
+                </tbody>
+            </table>
+            
+        </div>
+    </body>
+</html>
